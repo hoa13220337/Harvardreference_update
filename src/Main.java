@@ -13,6 +13,12 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Chris Wallace and Bradley Hoad on 10/01/2017.
@@ -40,7 +46,8 @@ public class Main {
     private JButton Generate;
     private JPanel Harvardreferencer;
 
-    /**Action for the generate button, includes if states so that if no information is inputted then
+    /**
+     * Action for the generate button, includes if states so that if no information is inputted then
      * this will not input the , and leave a space
      */
     public Main() {
@@ -79,9 +86,11 @@ public class Main {
                     public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                         return null;
                     }
+
                     public void checkClientTrusted(
                             java.security.cert.X509Certificate[] certs, String authType) {
                     }
+
                     public void checkServerTrusted(
                             java.security.cert.X509Certificate[] certs, String authType) {
                     }
@@ -103,7 +112,7 @@ public class Main {
                 try {
                     getISBN(ISBNtext.getText());
 
-                }catch(Exception error){
+                } catch (Exception error) {
                     System.out.println(error.toString());
                 }
             }
@@ -134,6 +143,7 @@ public class Main {
         parseJson(response.toString());
     }
 
+    // below data in taken from the API the Editor, Edition and Place of publication will need entering manually by the user.
     public void parseJson(String rawjson) throws JSONException {
 
         JSONObject obj = new JSONObject(rawjson);
@@ -142,25 +152,53 @@ public class Main {
         JSONObject item = items.getJSONObject(0);
         JSONObject volInfo = item.getJSONObject("volumeInfo");
         System.out.println(volInfo.getString("title"));
-//        System.out.println(obj.getString("Auth"));
-//        System.out.println(obj.getString("Datepub"));
-//        System.out.println(obj.getString("Publish"));
-//        System.out.println(obj.getString("public"));
-//        System.out.println(obj.getString("Editor"));
-//        System.out.println(obj.getString("Book"));
-//        System.out.println(obj.getString("Edition"));
-//
-//        Authortext.setText(obj.getString("Auth"));
-//        Pubdatetext.setText(obj.getString("Datepub"));
-//        Publishertext.setText(obj.getString("Publish"));
-//        Publication.setText(obj.getString("public"));
-//        Editortext.setText(obj.getString("Editor"));
-//        Booktext.setText(obj.getString("Book"));
-//        Editiontext.setText(obj.getString("Edition"));
+        System.out.println(volInfo.getString("publisher"));
+        System.out.println(volInfo.getString("publishedDate"));
+        JSONArray author = volInfo.getJSONArray("authors");
+        System.out.println(author.get(0));
+
+        //code for name to change into correct harvard referencing format
+
+        String name = author.get(0).toString();
+        String[] nameItems = name.split(" ");
+        StringBuilder harvardName = new StringBuilder();
+        List<String> nameParts = new ArrayList<String>();
+        int parts = nameItems.length;
+        System.out.println(parts);
+        System.out.println(nameItems[parts - 1]);
+        for (String Nitem : nameItems) {
+            nameParts.add(Nitem);
+        }
+        Collections.reverse(nameParts);
+        nameParts.forEach((section) -> {
+            if (section.equals(nameItems[parts - 1])) {
+                harvardName.append(section);
+            } else {
+                harvardName.append(". " + section.substring(0, 1));
+            }
+        });
+        System.out.println(harvardName.toString());
+
+        String year = null;
+        try {
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//the date from json needs to go inside
+            Date date = formatter.parse(volInfo.getString("publishedDate"));
+            SimpleDateFormat outPut = new SimpleDateFormat("yyyy");
+            year = outPut.format(date.getTime());
+//this will output the year only - though you'll need to wrap it in ()
+            System.out.println(year.toString());
+        } catch (Exception e) {
+
+        }
 
 
+        //Sends data into the required text fields
+        Authortext.setText(harvardName.toString());
+        Pubdatetext.setText(year.toString());
+        Publishertext.setText(volInfo.getString("publisher"));
+        Booktext.setText(volInfo.getString("title"));
     }
-
 
     //GUI code below
     public static void main(String[] args) {
@@ -169,8 +207,6 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
-
 
     }
 }
