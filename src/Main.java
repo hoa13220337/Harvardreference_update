@@ -48,6 +48,7 @@ public class Main {
     private JPanel Harvardreferencer;
     private JButton button1;
     private JButton button2;
+    private JButton largeTextSizeButton;
 
     /**
      * Action for the generate button, includes if states so that if no information is inputted then
@@ -136,6 +137,7 @@ public class Main {
                 Harvardreferencer.setFont(new Font("Arial", Font.PLAIN, 14));
                 button2.setFont(new Font("Arial", Font.PLAIN, 14));
                 button1.setFont(new Font("Arial", Font.PLAIN, 14));
+                largeTextSizeButton.setFont(new Font("Arial", Font.PLAIN, 14));
 //              each line of code changes the text within each instance to 14pt setting the font as Arial
 
             }
@@ -156,8 +158,28 @@ public class Main {
                 Harvardreferencer.setFont(new Font("Arial", Font.PLAIN, 12));
                 button2.setFont(new Font("Arial", Font.PLAIN, 12));
                 button1.setFont(new Font("Arial", Font.PLAIN, 12));
-
+                largeTextSizeButton.setFont(new Font("Arial", Font.PLAIN, 12));
 // each line of code changes the text within each instance back to 12pt keeping the font as Arial
+            }
+        });
+        largeTextSizeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Name.setFont(new Font("Arial", Font.PLAIN, 16));
+                Pubdate.setFont(new Font("Arial", Font.PLAIN, 16));
+                Author.setFont(new Font("Arial", Font.PLAIN, 16));
+                ISBN.setFont(new Font("Arial", Font.PLAIN, 16));
+                Editor.setFont(new Font("Arial", Font.PLAIN, 16));
+                Book.setFont(new Font("Arial", Font.PLAIN, 16));
+                Place.setFont(new Font("Arial", Font.PLAIN, 16));
+                Publisher.setFont(new Font("Arial", Font.PLAIN, 16));
+                Edition.setFont(new Font("Arial", Font.PLAIN, 16));
+                Generate.setFont(new Font("Arial", Font.PLAIN, 16));
+                Harvardreferencer.setFont(new Font("Arial", Font.PLAIN, 16));
+                button2.setFont(new Font("Arial", Font.PLAIN, 16));
+                button1.setFont(new Font("Arial", Font.PLAIN, 16));
+                largeTextSizeButton.setFont(new Font("Arial", Font.PLAIN, 16));
+
             }
         });
     }
