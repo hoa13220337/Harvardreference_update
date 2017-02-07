@@ -179,7 +179,7 @@ public class Main {
                 button2.setFont(new Font("Arial", Font.PLAIN, 16));
                 button1.setFont(new Font("Arial", Font.PLAIN, 16));
                 largeTextSizeButton.setFont(new Font("Arial", Font.PLAIN, 16));
-
+//              each line of code changes the text within each instance to 16pt setting the font as Arial
             }
         });
     }
