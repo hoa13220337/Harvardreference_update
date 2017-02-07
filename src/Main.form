@@ -211,6 +211,22 @@
           <text value="Generate"/>
         </properties>
       </component>
+      <component id="bca0e" class="javax.swing.JButton" binding="button1" default-binding="true">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Increase Text Size"/>
+        </properties>
+      </component>
+      <component id="e5ada" class="javax.swing.JButton" binding="button2" default-binding="true">
+        <constraints>
+          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Decrease Text Size"/>
+        </properties>
+      </component>
       <component id="22374" class="javax.swing.JEditorPane" binding="Generatedreference">
         <constraints>
           <grid row="9" column="1" row-span="1" col-span="7" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">

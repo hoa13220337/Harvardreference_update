@@ -7,6 +7,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -45,6 +46,8 @@ public class Main {
     private JEditorPane Generatedreference;
     private JButton Generate;
     private JPanel Harvardreferencer;
+    private JButton button1;
+    private JButton button2;
 
     /**
      * Action for the generate button, includes if states so that if no information is inputted then
@@ -117,10 +120,50 @@ public class Main {
                 }
             }
         });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Name.setFont(new Font("Arial", Font.PLAIN, 14));
+                Pubdate.setFont(new Font("Arial", Font.PLAIN, 14));
+                Author.setFont(new Font("Arial", Font.PLAIN, 14));
+                ISBN.setFont(new Font("Arial", Font.PLAIN, 14));
+                Editor.setFont(new Font("Arial", Font.PLAIN, 14));
+                Book.setFont(new Font("Arial", Font.PLAIN, 14));
+                Place.setFont(new Font("Arial", Font.PLAIN, 14));
+                Publisher.setFont(new Font("Arial", Font.PLAIN, 14));
+                Edition.setFont(new Font("Arial", Font.PLAIN, 14));
+                Generate.setFont(new Font("Arial", Font.PLAIN, 14));
+                Harvardreferencer.setFont(new Font("Arial", Font.PLAIN, 14));
+                button2.setFont(new Font("Arial", Font.PLAIN, 14));
+                button1.setFont(new Font("Arial", Font.PLAIN, 14));
+//              each line of code changes the text within each instance to 14pt setting the font as Arial
+
+            }
+        });
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Name.setFont(new Font("Arial", Font.PLAIN, 12));
+                Pubdate.setFont(new Font("Arial", Font.PLAIN, 12));
+                Author.setFont(new Font("Arial", Font.PLAIN, 12));
+                ISBN.setFont(new Font("Arial", Font.PLAIN, 12));
+                Editor.setFont(new Font("Arial", Font.PLAIN, 12));
+                Book.setFont(new Font("Arial", Font.PLAIN, 12));
+                Place.setFont(new Font("Arial", Font.PLAIN, 12));
+                Publisher.setFont(new Font("Arial", Font.PLAIN, 12));
+                Edition.setFont(new Font("Arial", Font.PLAIN, 12));
+                Generate.setFont(new Font("Arial", Font.PLAIN, 12));
+                Harvardreferencer.setFont(new Font("Arial", Font.PLAIN, 12));
+                button2.setFont(new Font("Arial", Font.PLAIN, 12));
+                button1.setFont(new Font("Arial", Font.PLAIN, 12));
+
+// each line of code changes the text within each instance back to 12pt keeping the font as Arial
+            }
+        });
     }
 
     public void getISBN(String ISBN) throws Exception {
-
+// establishing a connection then checking the ISBN Database against the given ISBN
         URL url = new URL("https://www.googleapis.com/books/v1/volumes?q=ISBN_10:" + ISBN);
 
         URLConnection con = url.openConnection();
